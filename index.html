@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osvaldo Dario Quintana Ruiz</title>
+<meta name="description" content="Personal academic webpage of Osvaldo Dario Quintana Ruiz, Doctor of Structural Engineering. Research on discrete element method, additive manufacturing, machine learning and computational solid mechanics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* paper / cream */
+    --bg: #f6f1e8;          /* warm cream */
+    --bg-2: #efe8da;        /* deeper cream for cards */
+    --paper: #fbf7ee;       /* slightly lighter for content cards */
+    --fg: #1a1d24;
+    --muted: #5a5448;
+    --muted-2: #7a7567;
+    --rule: #d9cfb9;
+    --rule-2: #e6dec9;
+    /* deep blue side panel */
+    --navy: #15263f;
+    --navy-2: #1d3556;
+    --navy-3: #2a4773;
+    --navy-fg: #f0e8d4;     /* warm cream text on navy */
+    --navy-muted: #a3b3c8;
+    --navy-rule: #2e4564;
+    /* accents */
+    --link: #1f4e8a;
+    --link-hover: #0d2d57;
+    --gold: #c89a3c;        /* muted gold for navy panel accents */
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    font-size:15px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:var(--link);text-decoration:none}
+  a:hover{color:var(--link-hover);text-decoration:underline;text-underline-offset:2px}
+  ::selection{background:var(--navy);color:var(--navy-fg)}
+
+  /* ───── layout: fixed side panel + scrolling main ───── */
+  .layout{
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:880px){
+    .layout{grid-template-columns:1fr}
+  }
+
+  /* ───── SIDE PANEL ───── */
+  .side{
+    background:var(--navy);
+    color:var(--navy-fg);
+    padding:40px 32px 32px;
+    border-right:1px solid #0d1a2d;
+    position:sticky;top:0;
+    height:100vh;
+    overflow-y:auto;
+    display:flex;flex-direction:column;
+  }
+  @media (max-width:880px){
+    .side{position:static;height:auto;padding:28px 24px 20px}
+  }
+  .side::-webkit-scrollbar{width:6px}
+  .side::-webkit-scrollbar-thumb{background:#2a4773;border-radius:3px}
+
+  /* photo removed by request */
+
+  .side-name{
+    font-family:var(--serif);
+    font-size:22px;font-weight:600;line-height:1.18;
+    color:var(--navy-fg);
+    margin:0 0 4px;letter-spacing:-.005em;
+  }
+  .side-role{
+    font-family:var(--sans);
+    font-size:12.5px;
+    color:var(--gold);
+    text-transform:uppercase;letter-spacing:.08em;
+    font-weight:500;
+    margin-bottom:18px;
+  }
+
+  .side-affil{
+    font-size:13px;color:var(--navy-muted);
+    line-height:1.5;
+    padding:12px 0;
+    border-top:1px solid var(--navy-rule);
+    border-bottom:1px solid var(--navy-rule);
+    margin-bottom:22px;
+  }
+  .side-affil strong{color:var(--navy-fg);font-weight:500;display:block;margin-bottom:2px}
+
+  /* nav inside side */
+  nav.side-nav{margin-bottom:22px}
+  nav.side-nav ol{
+    list-style:none;margin:0;padding:0;
+    counter-reset: snav;
+  }
+  nav.side-nav li{counter-increment: snav}
+  nav.side-nav a{
+    display:flex;align-items:baseline;gap:10px;
+    padding:8px 0;
+    color:var(--navy-muted);
+    font-size:14px;
+    border-bottom:1px solid var(--navy-rule);
+    transition:color .15s, padding .2s;
+  }
+  nav.side-nav li:last-child a{border-bottom:none}
+  nav.side-nav a::before{
+    content: counter(snav, decimal-leading-zero);
+    font-size:11px;color:#5a7090;font-variant-numeric:tabular-nums;
+    letter-spacing:.04em;
+    flex-shrink:0;width:20px;
+  }
+  nav.side-nav a:hover{
+    color:var(--navy-fg);text-decoration:none;padding-left:6px;
+  }
+  nav.side-nav a.active{
+    color:var(--gold);
+  }
+  nav.side-nav a.active::before{color:var(--gold)}
+
+  /* contact + links inside side */
+  .side-contact{
+    font-size:12.5px;color:var(--navy-muted);
+    line-height:1.55;margin-bottom:18px;
+  }
+  .side-contact .lbl{
+    color:#7a8ea8;text-transform:uppercase;font-size:10.5px;
+    letter-spacing:.1em;font-weight:500;display:block;margin-bottom:2px;
+  }
+  .side-contact a{color:var(--navy-fg)}
+  .side-contact a:hover{color:var(--gold)}
+
+  .side-links{
+    display:flex;flex-wrap:wrap;gap:8px 14px;
+    font-size:12.5px;
+    padding-top:14px;
+    border-top:1px solid var(--navy-rule);
+  }
+  .side-links a{
+    color:var(--navy-muted);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .side-links a svg{width:13px;height:13px;flex-shrink:0;
+    fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .side-links a:hover{color:var(--gold);text-decoration:none}
+
+  .side-foot{
+    margin-top:auto;padding-top:18px;
+    font-size:11px;color:#5a7090;letter-spacing:.04em;
+    border-top:1px solid var(--navy-rule);
+  }
+
+  /* ───── MAIN CONTENT ───── */
+  main{
+    padding:0 56px;
+    max-width:820px;
+    width:100%;
+  }
+  @media (max-width:1100px){ main{padding:0 36px} }
+  @media (max-width:880px){ main{padding:0 24px} }
+
+  /* notice banner top of main */
+  .notice{
+    color:var(--muted-2);
+    font-size:11px;
+    font-style:italic;
+    letter-spacing:.02em;
+    padding:18px 0 0;
+    margin:0;
+    text-align:right;
+    border:none;
+  }
+
+  section{padding:38px 0;scroll-margin-top:24px}
+  section + section{border-top:1px solid var(--rule)}
+
+  h2{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:-.005em;
+    color:var(--fg);
+    margin:0 0 18px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--rule);
+    display:flex;align-items:baseline;gap:10px;
+  }
+  h2::before{
+    content: attr(data-num);
+    font-family:var(--sans);
+    font-size:11px;color:var(--muted-2);
+    letter-spacing:.1em;font-weight:500;
+    border:1px solid var(--rule);padding:2px 6px;border-radius:3px;
+    background:var(--paper);
+    transform:translateY(-3px);
+  }
+  h3{
+    font-family:var(--sans);
+    font-size:13px;font-weight:600;
+    margin:24px 0 10px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  p{margin:0 0 14px}
+  p strong{font-weight:600}
+
+  /* ───── intro ───── */
+  .intro{padding-top:32px}
+  .intro-name{
+    font-family:var(--serif);
+    font-size:30px;font-weight:700;
+    line-height:1.15;letter-spacing:-.01em;
+    margin:0 0 4px;
+  }
+  .intro-role{
+    font-family:var(--sans);
+    font-size:14px;
+    color:var(--muted);
+    text-transform:uppercase;letter-spacing:.06em;
+    margin-bottom:18px;font-weight:500;
+  }
+  .intro-welcome{
+    font-family:var(--serif);
+    font-size:16.5px;
+    line-height:1.55;
+    color:var(--fg);
+    max-width:62ch;
+  }
+  .intro-welcome strong{font-weight:600;color:var(--navy)}
+
+  /* ───── about ───── */
+  .interests{
+    margin-top:18px;padding:14px 16px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    font-size:13.5px;
+  }
+  .interests b{font-weight:600;color:var(--navy);display:block;margin-bottom:4px;
+    text-transform:uppercase;font-size:11px;letter-spacing:.08em}
+  .interests .ilist{color:var(--muted)}
+
+  /* ───── research areas ───── */
+  ul.areas{
+    margin:6px 0 24px;padding:0;
+    list-style:none;
+    counter-reset: ar;
+  }
+  ul.areas li{
+    counter-increment: ar;
+    position:relative;padding:9px 0 9px 38px;
+    border-bottom:1px solid var(--rule-2);
+    font-size:14.5px;
+  }
+  ul.areas li:last-child{border-bottom:none}
+  ul.areas li::before{
+    content: counter(ar, decimal-leading-zero);
+    position:absolute;left:0;top:9px;
+    font-family:var(--sans);font-variant-numeric:tabular-nums;
+    font-size:11px;color:var(--gold);font-weight:600;
+    letter-spacing:.04em;
+    border:1px solid var(--gold);
+    padding:1px 6px;border-radius:3px;
+    background:var(--paper);
+  }
+
+  /* ───── images row ───── */
+  .figs{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+    margin:10px 0 24px;
+  }
+  @media (max-width:680px){.figs{grid-template-columns:1fr 1fr}}
+  .fig{
+    aspect-ratio:4/3;background:var(--bg-2);
+    border:1px solid var(--rule);position:relative;overflow:hidden;
+    margin:0;
+  }
+  .fig::before{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(45deg,
+      transparent 0 10px,
+      rgba(21,38,63,.08) 10px 11px);
+  }
+  .fig figcaption{
+    position:absolute;left:8px;right:8px;bottom:8px;
+    font-size:11px;color:var(--fg);
+    background:var(--paper);padding:3px 8px;
+    border:1px solid var(--rule);
+    text-align:left;
+  }
+  .fig-video::before{display:none}
+  .fig-video video{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;background:#000;
+  }
+
+  /* ───── video ───── */
+  .video{
+    margin:8px 0 4px;
+    border:1px solid var(--rule);
+    background:var(--navy);
+    aspect-ratio:16/9;position:relative;overflow:hidden;
+    display:block;
+  }
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video-poster{
+    position:absolute;inset:0;display:grid;place-items:center;cursor:pointer;
+    background:linear-gradient(135deg, var(--navy-2), var(--navy));color:#fff;
+    border:0;
+  }
+  .video-poster::before{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(45deg,
+      transparent 0 14px, rgba(255,255,255,.04) 14px 15px);
+  }
+  .play{
+    width:60px;height:60px;border-radius:50%;
+    background:var(--gold);color:var(--navy);
+    display:grid;place-items:center;z-index:1;position:relative;
+    transition:transform .2s, background .2s;
+  }
+  .video-poster:hover .play{transform:scale(1.06)}
+  .play svg{width:18px;height:18px;margin-left:3px}
+  .video-cap{
+    font-size:12.5px;color:var(--muted);margin-top:8px;
+  }
+  .video-cap strong{color:var(--fg);font-weight:500}
+
+  /* ───── publications ───── */
+  .authors strong{font-weight:600;color:var(--fg)}
+  .pubs-link{
+    font-size:13.5px;color:var(--muted);margin-bottom:14px;
+    padding:10px 14px;background:var(--paper);
+    border:1px solid var(--rule);
+  }
+  .pubs-link a{font-weight:600}
+
+  ol.pubs{
+    margin:0;padding:0;list-style:none;
+    counter-reset: pub;
+  }
+  ol.pubs li{
+    counter-increment: pub;
+    position:relative;
+    padding:14px 0 14px 42px;
+    border-bottom:1px solid var(--rule-2);
+    font-size:14px;line-height:1.55;
+  }
+  ol.pubs li:last-child{border-bottom:none}
+  ol.pubs li::before{
+    content: "[" counter(pub) "]";
+    position:absolute;left:0;top:14px;
+    font-family:var(--sans);font-variant-numeric:tabular-nums;
+    font-size:12.5px;color:var(--navy);font-weight:600;
+  }
+  ol.pubs .authors{font-weight:600;color:var(--fg)}
+  ol.pubs .title{color:var(--fg)}
+  ol.pubs .venue{font-style:italic;color:var(--muted)}
+  ol.pubs .year{color:var(--muted)}
+  ol.pubs .doi{
+    display:inline-block;margin-left:6px;font-size:12.5px;
+    color:var(--link);
+  }
+
+  /* ───── awards ───── */
+  .award-list{margin:0;padding:0;list-style:none}
+  .award-list li{
+    padding:10px 0;border-bottom:1px solid var(--rule-2);
+    font-size:14px;
+    display:grid;grid-template-columns:1fr auto;gap:18px;
+    align-items:baseline;
+  }
+  .award-list li:last-child{border-bottom:none}
+  .award-list .ay{
+    color:var(--gold);font-variant-numeric:tabular-nums;font-size:12.5px;
+    white-space:nowrap;font-weight:600;letter-spacing:.04em;
+    border:1px solid var(--gold);padding:2px 8px;border-radius:3px;
+    background:var(--paper);
+  }
+  .award-list .ad{color:var(--muted);font-size:13px;display:block;margin-top:1px}
+
+  /* ───── teaching ───── */
+  .teach{font-size:14px}
+  .teach .tinst{color:var(--muted);font-size:13px;margin-bottom:6px;font-style:italic}
+  .teach ul{margin:6px 0 0;padding:0 0 0 18px}
+  .teach li{margin-bottom:4px}
+  .teach li em{color:var(--muted);font-style:normal}
+
+  /* ───── blog ───── */
+  .news-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;
+    margin:6px 0 8px;
+  }
+  @media (max-width:680px){.news-grid{grid-template-columns:1fr}}
+  .news-item{margin:0}
+  .news-video{
+    aspect-ratio:16/9;
+    border:1px solid var(--rule);
+    background:var(--navy);
+    position:relative;overflow:hidden;
+  }
+  .news-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .news-poster{
+    position:absolute;inset:0;display:grid;place-items:center;cursor:pointer;
+    background:linear-gradient(135deg, var(--navy-2), var(--navy));color:#fff;border:0;
+  }
+  .news-poster::before{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(45deg,
+      transparent 0 14px, rgba(255,255,255,.04) 14px 15px);
+  }
+  .news-item figcaption{
+    font-size:13px;color:var(--muted);line-height:1.45;
+    padding-top:8px;
+  }
+  .news-item figcaption strong{color:var(--fg);font-weight:600;display:block;margin-bottom:2px;font-family:var(--serif);font-size:14.5px}
+
+  .hl-list{margin:0;padding:0;list-style:none}
+  .hl-list li{
+    padding:14px 0;border-bottom:1px solid var(--rule-2);
+  }
+  .hl-list li:last-child{border-bottom:none}
+  .hl-title{
+    font-family:var(--serif);font-size:15.5px;font-weight:600;
+    color:var(--fg);margin:0 0 4px;line-height:1.35;
+  }
+  .hl-excerpt{font-size:13.5px;color:var(--muted);margin:0;line-height:1.5}
+  .hl-excerpt a{font-weight:500;margin-left:2px}
+  .hl-lang{
+    display:inline-block;margin-left:8px;font-size:11px;
+    color:var(--navy);background:var(--paper);
+    border:1px solid var(--rule);padding:1px 7px;border-radius:3px;
+    text-transform:uppercase;letter-spacing:.06em;font-weight:500;
+  }
+
+  .ext-list{margin:0;padding:0;list-style:none}
+  .ext-list li{
+    padding:8px 0;border-bottom:1px solid var(--rule-2);font-size:14px;
+  }
+  .ext-list li:last-child{border-bottom:none}
+  .ext-list a{color:var(--link);font-weight:500}
+
+  /* ───── footer ───── */
+  footer.foot{
+    border-top:1px solid var(--rule);
+    margin-top:0;
+    padding:24px 0 60px;
+    font-size:12.5px;color:var(--muted);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;
+  }
+
+  /* ───── animations ───── */
+  .reveal{opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ═══════════════ SIDE PANEL ═══════════════ -->
+  <aside class="side">
+    <h1 class="side-name">Osvaldo Dario<br>Quintana Ruiz</h1>
+    <div class="side-role">Doctor of Structural Engineering</div>
+
+    <div class="side-affil">
+      <strong>FIUNA · GIIE</strong>
+      Faculty of Engineering · National University of Asunción
+    </div>
+
+    <nav class="side-nav" aria-label="Sections">
+      <ol>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Selected publications</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ol>
+    </nav>
+
+    <div class="side-contact">
+      <span class="lbl">Email</span>
+      <a href="#">oquintana [at] ing.una.py</a>
+    </div>
+    <div class="side-contact">
+      <span class="lbl">Location</span>
+      Asunción, Paraguay
+    </div>
+
+    <div class="side-links">
+      <a href="https://scholar.google.com/citations?user=Pt4DaR4AAAAJ&hl=es" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M6 11v5a6 6 0 0012 0v-5"/></svg>
+        Scholar</a>
+      <a href="https://orcid.org/0000-0001-8974-496X" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8v8M9 8h4a4 4 0 010 8H9"/></svg>
+        ORCID</a>
+      <a href="https://www.webofscience.com/wos/author/record/HJA-6512-2022" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4a12 12 0 010 16M12 4a12 12 0 000 16"/></svg>
+        WoS</a>
+      <a href="http://lattes.cnpq.br/1842964785867355" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/><path d="M4 12h16M12 4v16"/></svg>
+        Lattes</a>
+      <a href="http://linkedin.com/in/osvaldoquintana" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
+        LinkedIn</a>
+    </div>
+
+    <div class="side-foot">
+      © 2021 — All Rights Reserved
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main>
+
+    <p class="notice">This website is for academic purpose only.</p>
+
+    <!-- HOME -->
+    <section id="home" class="intro" style="border-top:none">
+      <h2 data-num="00">Home</h2>
+      <h3 style="margin-top:0">Welcome</h3>
+      <p class="intro-name reveal">Osvaldo Dario Quintana Ruiz</p>
+      <div class="intro-role reveal">Doctor of Structural Engineering</div>
+      <p class="intro-welcome reveal">
+        I am an <strong>Associate Researcher</strong> at the Computational Mechanics Laboratory and currently a member of the <strong>Structural Engineering Research Group (GIIE)</strong>, Faculty of Engineering, National University of Asunción.
+      </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 data-num="01">About</h2>
+      <p>
+        I am from Paraguay, residing in Asunción. I hold a bachelor's degree in architecture (2005) and a
+        master's degree in civil engineering (2013) from the National University of Asunción. I earned my
+        Ph.D. in structural engineering from the University of São Paulo, Brazil (2021) under the supervision
+        of Prof. Eduardo M. B. Campello.
+      </p>
+      <p>
+        My primary research focuses on simulating and applying machine learning algorithms to optimize
+        3D-printed systems. I developed my own artificial neural network (ANN) program fully implemented
+        in a low-level language, and other programs for multiphysical analysis of particle systems.
+      </p>
+      <p>
+        In 2014, I received the TOYP Prize (Ten Outstanding Young People in the World) in the category of
+        academic achievements.
+      </p>
+
+      <div class="interests">
+        <b>Topics of interest</b>
+        <span class="ilist">granular materials · additive manufacturing · computational solid mechanics · discrete element method · machine learning · genetic algorithms.</span>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2 data-num="02">Research</h2>
+      <p>I have experience in the following topics:</p>
+
+      <ul class="areas">
+        <li>Computational simulation of 3D concrete printing</li>
+        <li>Computational simulation of selective laser sintering (SLS) processes</li>
+        <li>Machine learning and genetic algorithms</li>
+        <li>Hydration heat and thermal stresses in concrete structures</li>
+        <li>Heat transfer in particle systems</li>
+      </ul>
+
+      <h3>Research video</h3>
+      <a class="video" id="videoWrap" href="https://www.youtube.com/watch?v=L93WjPqbg8A" target="_blank" rel="noopener" aria-label="Open research video on YouTube">
+        <span class="video-poster">
+          <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8V4z"/></svg></span>
+        </span>
+      </a>
+      <p class="video-cap"><strong>Research video</strong> — in Portuguese · opens on YouTube</p>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2 data-num="03">Selected publications</h2>
+      <p class="pubs-link">
+        For a complete and up-to-date list, see my
+        <a href="https://scholar.google.com/citations?user=Pt4DaR4AAAAJ&hl=es" target="_blank" rel="noopener">Google Scholar profile</a>.
+      </p>
+
+      <ol class="pubs">
+        <li>
+          <span class="authors">Avancini, V. H. M., <strong>Quintana-Ruiz, O. D.</strong>, Campello, E. M. B.</span>
+          <span class="title">Modeling 3D concrete printing through the combined DEM-discrete fresh concrete approach.</span>
+          <span class="venue">Computational Particle Mechanics</span>, <span class="year">2025</span>.
+          <a class="doi" href="https://doi.org/10.1007/s40571-025-01104-x" target="_blank" rel="noopener">[doi]</a>
+        </li>
+        <li>
+          <span class="authors"><strong>Quintana-Ruiz, O. D.</strong>, Campello, E. M. B.</span>
+          <span class="title">DEM modeling of advanced manufacturing technologies: from SLS to 3D concrete printing.</span>
+          <span class="venue">Archive of Applied Mechanics</span>, <span class="year">2023</span>.
+          <a class="doi" href="https://doi.org/10.1007/s00419-024-02615-4" target="_blank" rel="noopener">[doi]</a>
+        </li>
+        <li>
+          <span class="authors"><strong>Quintana-Ruiz, O. D.</strong>, Campello, E. M. B.</span>
+          <span class="title">Discrete element modeling of selective laser sintering additive manufacturing processes.</span>
+          <span class="venue">Computer Methods in Applied Mechanics and Engineering</span>, <span class="year">2023</span>.
+          <a class="doi" href="https://doi.org/10.1016/j.cma.2023.115994" target="_blank" rel="noopener">[doi]</a>
+        </li>
+        <li>
+          <span class="authors"><strong>Quintana-Ruiz, O. D.</strong>, Campello, E. M. B.</span>
+          <span class="title">A methodology to predict the effective thermal conductivity of a granular assembly using deep learning.</span>
+          <span class="venue">CILAMCE</span>, <span class="year">2022</span>.
+        </li>
+        <li>
+          <span class="authors"><strong>Quintana-Ruiz, O. D.</strong></span>
+          <span class="title">A coupled thermo-mechanical model for the simulation of discrete particle systems in advanced manufacturing.</span>
+          <span class="venue">Doctoral thesis, University of São Paulo</span>, <span class="year">2021</span>.
+          <a class="doi" href="https://doi.org/10.11606/T.3.2021.tde-21122021-103525" target="_blank" rel="noopener">[doi]</a>
+        </li>
+        <li>
+          <span class="authors">Campello, E. M. B., <strong>Quintana-Ruiz, O. D.</strong></span>
+          <span class="title">On a simple, stable and efficient bond model for inter-particle adhesion.</span>
+          <span class="venue">Computational Particle Mechanics</span>, <span class="year">2021</span>.
+          <a class="doi" href="https://doi.org/10.1007/s40571-021-00388-z" target="_blank" rel="noopener">[doi]</a>
+        </li>
+        <li>
+          <span class="authors"><strong>Quintana-Ruiz, O. D.</strong>, Campello, E. M. B.</span>
+          <span class="title">A coupled thermo-mechanical model for the simulation of discrete particle systems.</span>
+          <span class="venue">Journal of the Brazilian Society of Mechanical Sciences and Engineering</span>, <span class="year">2020</span>.
+          <a class="doi" href="https://doi.org/10.1007/s40430-020-02465-5" target="_blank" rel="noopener">[doi]</a>
+        </li>
+        <li>
+          <span class="authors"><strong>Quintana-Ruiz, O. D.</strong>, et al.</span>
+          <span class="title">Inverse estimation of thermal properties of concrete during hydrating process.</span>
+          <span class="venue">ASCE</span>, <span class="year">2013</span>.
+          <a class="doi" href="https://doi.org/10.1061/9780784413111.057" target="_blank" rel="noopener">[doi]</a>
+        </li>
+        <li>
+          <span class="authors"><strong>Quintana-Ruiz, O. D.</strong>, et al.</span>
+          <span class="title">Simulação numérica do comportamento termomecânico do concreto.</span>
+          <span class="venue">10th World Congress on Computational Mechanics</span>, <span class="year">2012</span>.
+        </li>
+      </ol>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
+      <h2 data-num="04">Awards</h2>
+
+      <h3>Academic</h3>
+      <ul class="award-list">
+        <li>
+          <div>TOYP Prize — Ten Outstanding Young People in the World, academic achievements category.</div>
+          <span class="ay">2014</span>
+        </li>
+      </ul>
+
+      <h3>Scholarships</h3>
+      <ul class="award-list">
+        <li>
+          <div>Graduate Scholarship — ITAIPU Binacional.</div>
+          <span class="ay">2009</span>
+        </li>
+        <li>
+          <div>Excellence Scholarship "Carlos Antonio López" — FEEI / Inter-American Development Bank.</div>
+          <span class="ay">2017 · 2022</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching">
+      <h2 data-num="05">Teaching</h2>
+      <div class="teach">
+        <p class="tinst">Graduate Program in Civil Engineering — Faculty of Engineering, National University of Asunción (UNA).</p>
+        <ul>
+          <li>Introduction to Scientific Computing <em>— in conjunction with Prof. Antonio Aquino.</em></li>
+          <li>Computational Simulation in Engineering <em>— in conjunction with Prof. Antonio Aquino.</em></li>
+        </ul>
+
+        <p class="tinst" style="margin-top:18px">Graduate Program in Civil Engineering — Polytechnic School, University of São Paulo (USP).</p>
+        <ul>
+          <li>Computational Modeling of Granular Materials and Particulate Media <em>— in conjunction with Prof. Eduardo M. B. Campello.</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog">
+      <h2 data-num="06">Blog</h2>
+
+      <!-- News (videos) -->
+      <h3>News</h3>
+      <div class="news-grid">
+        <figure class="news-item">
+          <div class="news-video">
+            <button class="news-poster" data-yt="QzcRdKa1g9o" aria-label="Play: Advances in 3D Concrete Printing">
+              <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8V4z"/></svg></span>
+            </button>
+          </div>
+          <figcaption>
+            <strong>Advances in 3D Concrete Printing.</strong>
+            Source: <a href="https://hubic.org.br/" target="_blank" rel="noopener">Hubic</a>.
+          </figcaption>
+        </figure>
+        <figure class="news-item">
+          <div class="news-video">
+            <button class="news-poster" data-yt="sbi94BAOWsY" aria-label="Play: Numerical Simulation of Concrete 3D Printing">
+              <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8V4z"/></svg></span>
+            </button>
+          </div>
+          <figcaption>
+            <strong>Numerical Simulation of Concrete 3D Printing.</strong>
+            Source: <a href="https://www.concrete.org/" target="_blank" rel="noopener">ACI</a>.
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Highlights -->
+      <h3>Highlights</h3>
+      <ul class="hl-list">
+        <li>
+          <h4 class="hl-title">Paraguayan researcher publishes 3D-printing study in leading scientific journal</h4>
+          <p class="hl-excerpt">
+            Highlight in the media about my achievement.
+            <a href="https://elnacional.com.py/nacionales/2024/07/11/paraguayo-publica-sobre-impresion-3d-en-prestigiosa-revista-cientifica/" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+        <li>
+          <h4 class="hl-title">Former BECAL fellow leads efforts to launch the first doctoral program at FIUNA, in partnership with the University of São Paulo, Brazil</h4>
+          <p class="hl-excerpt">
+            BECAL Paraguay highlights my achievement.
+            <a href="https://becal.gov.py/v2/2024/02/16/exbecario-de-becal-busca-concretar-primer-curso-de-doctorado-en-fiuna-con-participacion-usp-de-brasil/" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+        <li>
+          <h4 class="hl-title">Stories that inspire</h4>
+          <p class="hl-excerpt">
+            BECAL Paraguay highlights my achievement.
+            <a href="https://becal.gov.py/v2/2021/11/17/testimonios-que-inspiran-osvaldo-quintana/" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+        <li>
+          <h4 class="hl-title">Recognized for excellence</h4>
+          <p class="hl-excerpt">
+            Highlight in the media about my achievement.
+            <a href="https://www.abc.com.py/edicion-impresa/suplementos/abc-revista/galardon-a-la-excelencia-1324830.html" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+        <li>
+          <h4 class="hl-title">World-class Paraguayan engineering talent</h4>
+          <p class="hl-excerpt">
+            The Faculty of Engineering — UNA highlights my achievement.
+            <a href="https://www.ing.una.py/FIUNA3/?p=6317" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+        <li>
+          <h4 class="hl-title">The first Master’s graduates in Civil Engineering in Paraguay</h4>
+          <p class="hl-excerpt">
+            Highlight in the media about my achievement.
+            <a href="https://www.abc.com.py/especiales/fin-de-semana/los-primeros-masters-en-ingenieria-civil-651998.html" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+        <li>
+          <h4 class="hl-title">World-class Paraguayan engineering talent</h4>
+          <p class="hl-excerpt">
+            Highlight in the media about my achievement.
+            <a href="https://www.abc.com.py/especiales/fin-de-semana/ingenio-paraguayo-de-elite-mundial-614895.html" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+        <li>
+          <h4 class="hl-title">LMC: cornerstone of civil engineering</h4>
+          <p class="hl-excerpt">
+            Highlight in the media about our laboratory.
+            <a href="https://www.abc.com.py/especiales/fin-de-semana/lmc-cimientos-del-ingenio-civil-634631.html" target="_blank" rel="noopener">Read more ↗</a>
+          </p>
+        </li>
+      </ul>
+
+      <!-- Interesting links -->
+      <h3>Interesting links</h3>
+      <ul class="ext-list">
+        <li><a href="https://www.estructuras.org.py/la-ape" target="_blank" rel="noopener">Paraguayan Association of Structures (APE) ↗</a></li>
+        <li><a href="http://www.abmec.org.br/" target="_blank" rel="noopener">Brazilian Association for Computational Methods in Engineering (ABMEC) ↗</a></li>
+        <li><a href="https://iacm.info/" target="_blank" rel="noopener">International Association for Computational Mechanics (IACM) ↗</a></li>
+        <li><a href="https://site.ibracon.org.br/" target="_blank" rel="noopener">Brazilian Institute of Concrete (IBRACON) ↗</a></li>
+      </ul>
+
+      <h3>Scientific events</h3>
+      <p style="font-size:13.5px;color:var(--muted);font-style:italic;margin-bottom:0">Soon.</p>
+    </section>
+
+    <footer class="foot">
+      <span>© Copyright 2021 — All Rights Reserved.</span>
+      <span>Asunción · Paraguay</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.12, rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Active section in side nav
+  const links = document.querySelectorAll('nav.side-nav a[href^="#"]');
+  const ids = Array.from(links).map(a=>a.getAttribute('href').slice(1));
+  const sections = ids.map(id=>document.getElementById(id)).filter(Boolean);
+  const onScroll = ()=>{
+    const y = window.scrollY + 120;
+    let cur = sections[0]?.id;
+    for(const s of sections){ if(s.offsetTop <= y) cur = s.id; }
+    links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+cur));
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Lazy YouTube — news posters
+  document.querySelectorAll('.news-poster').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.getAttribute('data-yt');
+      const ifr = document.createElement('iframe');
+      ifr.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      ifr.title = btn.getAttribute('aria-label') || 'Video';
+      ifr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      ifr.allowFullscreen = true;
+      btn.replaceWith(ifr);
+    });
+  });
+})();
+</script>
+</body>
+</html>
