@@ -159,6 +159,21 @@
     fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
   .side-links a:hover{color:var(--gold);text-decoration:none}
 
+  .side-qr{
+    margin-top:22px;
+    display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+    width:fit-content;
+  }
+  .side-qr img{
+    width:72px;height:72px;display:block;
+    background:var(--navy-fg);padding:6px;border:1px solid var(--navy-rule);
+  }
+  .side-qr-label{
+    font-size:11px;letter-spacing:.08em;color:var(--gold);
+    text-transform:uppercase;font-weight:600;
+    text-align:center;width:100%;
+  }
+
   .side-foot{
     margin-top:auto;padding-top:18px;
     font-size:11px;color:#5a7090;letter-spacing:.04em;
@@ -530,7 +545,7 @@
 
     <div class="side-contact">
       <span class="lbl">Email</span>
-      <a href="mailto:oquintana@ing.una.py">oquintana [at] ing.una.py</a>
+      <a href="/cdn-cgi/l/email-protection#aac5dbdfc3c4decbc4cbeac3c4cd84dfc4cb84dad3">oquintana [at] ing.una.py</a>
     </div>
     <div class="side-contact">
       <span class="lbl">Location</span>
@@ -553,6 +568,13 @@
       <a href="http://linkedin.com/in/osvaldoquintana" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
         LinkedIn</a>
+    </div>
+
+    <div class="side-qr">
+      <a href="https://www.instagram.com/giie.fiuna" target="_blank" rel="noopener">
+        <img src="assets/giie-qr.jpg" alt="GIIE Instagram QR code">
+      </a>
+      <span class="side-qr-label">GIIE</span>
     </div>
 
     <div class="side-foot">
@@ -868,7 +890,7 @@
   </main>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
